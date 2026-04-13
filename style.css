@@ -1,0 +1,267 @@
+.wrapper {
+  width:1200px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0px;
+  border-bottom: 3px solid white;
+}
+
+.banner {
+  /*background-color:darkgrey;*/
+  width:1100px;
+  height:120px;
+  border: 0px #222 solid;
+  padding: 20px 20px 90px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  text-align: center;
+  line-height: 200px;
+}
+
+#iAmALazyMan {
+  height:25px;
+}
+
+
+#content1 {
+  position: absolute;
+  background-color:rgba(88,88,88,.7);
+  width: 1100px;
+  border: 0px #222 solid;
+  padding: 20px;
+  margin: 50px 20px 20px 30px;
+}
+
+#content2 {
+  position: absolute;
+  background-color:rgba(88,88,88,.7);
+  width: 1100px;
+  border: 0px #222 solid;
+  padding: 20px;
+  margin: 50px 20px 20px 30px;
+  display: none;
+}
+
+#content3 {
+  position: absolute;
+  background-color:rgba(88,88,88,.7);
+  width: 1100px;
+  border: 0px #222 solid;
+  padding: 20px;
+  margin: 50px 20px 20px 30px;
+  display: none;
+}
+
+img {
+  border: 2px solid black;
+}
+
+body{
+  background: #ddd;
+  overflow: hidden;
+}
+
+body::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url('img/Raining_street.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    z-index: -1;
+    
+}
+
+
+div {
+  border-radius: 30px;
+}
+
+
+h1 {
+color: white;
+font-family: juggy;
+font-size: 100px;
+margin: 5px;
+}
+
+h2 {
+color: #ea0;
+font-family: sansundertale;
+font-size: 2em;
+margin: 5px;
+}
+
+h3 {
+margin: 0px;
+font-family: sansundertale;
+font-size: 3em;
+color: #fff;
+}
+
+p {
+color: #eee;
+font-family: helvetica;
+font-size: 1.3em;
+margin: 5px;
+}
+
+ul {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  float: left;
+  transition: .25s;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li:not(.active):hover {
+  background-color: #111111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+
+
+@keyframes slideNew {
+    from { transform: translateX(-100%);}
+    to { transform: translateX(0);}
+  }
+
+@keyframes slideOld {
+  from { transform: translateX(0);}
+  to { transform: translateX(100%);}
+}
+
+.current{
+  animation: slideNew .5s;
+}
+
+.inactive{
+  animation: slideOld .5s;
+}
+
+@keyframes slideNewInv {
+    from { transform: translateX(100%);}
+    to { transform: translateX(0);}
+  }
+
+@keyframes slideOldInv {
+  from { transform: translateX(0);}
+  to { transform: translateX(-100%);}
+}
+
+.currentInv{
+  animation: slideNewInv .5s;
+}
+
+.inactiveInv{
+  animation: slideOldInv .5s;
+}
+
+
+
+
+#preview1 {
+    width: 300px;
+    margin-right: 22px;
+    border-radius: 0px;
+}
+
+#preview2 {
+    width: 300px;
+    margin: 0 68px;
+    border-radius: 0px;
+}
+
+#preview3 {
+  width: 300px;
+  margin-left: 22px;
+  border-radius: 0px;
+}
+
+#preview4 {
+    width: 300px;
+    margin-right: 22px;
+    margin-top: 46px;
+    border-radius: 0px;
+}
+
+#preview5 {
+    width: 300px;
+    margin: 0 68px;
+    margin-top: 46px;
+    border-radius: 0px;
+}
+
+#preview6 {
+  width: 300px;
+  margin-left: 22px;
+  margin-top: 46px;
+  border-radius: 0px;
+}
+
+#imgsrc {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  font-size: .7em;
+}
+
+
+#meLol{
+  height: 400px;
+  float: right;
+}
+
+#abTxt{
+  position: absolute;
+}
+
+#rain{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  user-select: none;
+  pointer-events: none;
+  mask-image: linear-gradient(to left, white, transparent,transparent, white);
+}
+
+#contentScSt {
+  position: relative;
+  background-color:rgba(88,88,88,.7);
+  width: 300px;
+  border: 0px #222 solid;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 300px;
+}
+
+a{
+  color: white;
+}

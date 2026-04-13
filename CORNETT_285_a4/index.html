@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Strive - Christopher Larkin</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <!-- check the Comments for more info -->
+
+<body class= "back-row-toggle splat-toggle">
+  <div id="container">
+    <img src="img/base.png" id="backdrop">
+
+    <img src="img/a1.png" id="panel1"
+      onmousedown="document.getElementById('song1').play();"
+      onmouseout="document.getElementById('song1').pause();
+      document.getElementById('song1').currentTime = 0;">
+      <audio id="song1">
+        <source src="audio/a1.mp3" type="audio/mp3"></audio>
+
+    <img src="img/a2.png" id="panel2"
+      onmousedown="document.getElementById('song2').play();"
+      onmouseout="document.getElementById('song2').pause();
+      document.getElementById('song2').currentTime = 0;">
+      <audio id="song2">
+        <source src="audio/a2.mp3" type="audio/mp3"></audio>
+
+    <img src="img/b1.png" id="panel3"
+      onmousedown="document.getElementById('song3').play();"
+      onmouseout="document.getElementById('song3').pause();
+      document.getElementById('song3').currentTime = 0;">
+      <audio id="song3">
+        <source src="audio/b1.mp3" type="audio/mp3"></audio>
+
+    <img src="img/a3.png" id="panel5"
+      onmousedown="document.getElementById('song5').play();"
+      onmouseout="document.getElementById('song5').pause();
+      document.getElementById('song5').currentTime = 0;">
+      <audio id="song5">
+        <source src="audio/a3.mp3" type="audio/mp3"></audio>
+
+    <img src="img/b2.png" id="panel4"
+      onmousedown="document.getElementById('song4').play();"
+      onmouseout="document.getElementById('song4').pause();
+      document.getElementById('song4').currentTime = 0;"><!--B2 is before A3, however this panel is placed after A3 so that B2's hover has priority over A3's hover-->
+      <audio id="song4">
+        <source src="audio/b2.mp3" type="audio/mp3"></audio>
+
+    <img src="img/a4.png" id="panel6"
+      onmousedown="document.getElementById('song6').play();"
+      onmouseout="document.getElementById('song6').pause();
+      document.getElementById('song6').currentTime = 0;">
+      <audio id="song6">
+        <source src="audio/a4.mp3" type="audio/mp3"></audio>
+
+    <img src="img/b3.png" id="panel7"
+      onmousedown="document.getElementById('song7').play();"
+      onmouseout="document.getElementById('song7').pause();
+      document.getElementById('song7').currentTime = 0;">
+      <audio id="song7">
+        <source src="audio/b3.mp3" type="audio/mp3"></audio>
+
+    <img src="img/b4.png" id="panel8"
+      onmousedown="document.getElementById('song8').play();"
+      onmouseout="document.getElementById('song8').pause();
+      document.getElementById('song8').currentTime = 0;">
+      <audio id="song8">
+        <source src="audio/b4.mp3" type="audio/mp3"></audio>
+
+    <img src="img/c1.png" id="panel9"
+      onmousedown="document.getElementById('song9').play();"
+      onmouseout="document.getElementById('song9').pause();
+      document.getElementById('song9').currentTime = 0;">
+      <audio id="song9">
+        <source src="audio/c1.mp3" type="audio/mp3"></audio>
+
+    <img src="img/a5.png" id="panel11"
+      onmousedown="document.getElementById('songlast').play();"
+      onmouseout="document.getElementById('songlast').pause();
+      document.getElementById('songlast').currentTime = 0;">
+      <audio id="songlast">
+        <source src="audio/a5.mp3" type="audio/mp3"></audio>
+        
+    <img src="img/c2.png" id="panel10"
+      onmousedown="document.getElementById('songsl').play();"
+      onmouseout="document.getElementById('songsl').pause();
+      document.getElementById('songsl').currentTime = 0;"><!--C2 is before A5, however this panel is placed after A5 so that C2's hover has priority over A5's hover-->
+      <audio id="songsl">
+        <source src="audio/c2.mp3" type="audio/mp3"></audio>
+
+    <div id="needle"><h3><span id="needleTxt"></span></h3></div>
+    <div id="coolbutton" onclick="buttonChange();" onmouseover="txtShift();" onmouseout="txtDeshift();"><p><span id="symbol"></span></p></div>
+    <div id="playline">
+      <div id="point"></div>
+      <div id="line"></div>
+    </div>
+
+
+
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+    </div>
+  </div>
+  </body>
+  <script>
+    var audio = new Audio('audio/full.mp3');
+    var timeoutId = [];
+    var buttSymbol = "▶"; //⏹
+    var playActive = false;
+    var coolTxt = "Play";
+    var coolLine = document.getElementById("playline")
+    document.getElementById("symbol").innerHTML = buttSymbol;
+    document.getElementById("needleTxt").innerHTML = coolTxt;
+    var panels = [document.getElementById("panel1"), document.getElementById("panel2"), document.getElementById("panel3"),document.getElementById("panel4"),document.getElementById("panel5"),document.getElementById("panel6"),document.getElementById("panel7"),document.getElementById("panel8"),document.getElementById("panel9"),document.getElementById("panel10"),document.getElementById("panel11")];
+    var currentPanel = 0;
+    var nextPanel = 1;
+    document.getElementById('needle').style.transitionDuration = '.2s';
+    document.getElementById("needleTxt").style.marginBottom = "5px";
+
+    function buttonChange(){
+      if (!playActive){
+        buttSymbol = "⏹";
+        coolTxt = "Stop";
+        playActive = true;
+        currentPanel = 0;
+        nextPanel = 1;
+        panels[currentPanel].style.opacity = "1";
+        coolLine.style.opacity = "1";
+        coolLine.style.WebkitAnimationPlayState = "running";
+        document.getElementById("coolbutton").style.padding = "0px 0px 5px 0px";
+        for (let i = 0; i < 11; i++) panels[i].style.pointerEvents = "none";
+        setAllTimeouts();
+        audio.play();
+      }
+      else{
+        buttSymbol = "▶";
+        coolTxt = "Play";
+        playActive = false;
+        document.getElementById("coolbutton").style.padding = "0px 0px 5px 5px";
+        coolLine.style.opacity = "";
+        coolLine.style.WebkitAnimationPlayState = "paused";
+        coolLine.style.animation = 'none';
+        coolLine.offsetHeight; /* trigger reflow */
+        coolLine.style.animation = null; 
+        for (let i = 0; i < 11; i++) {
+          panels[i].style.pointerEvents = "auto";
+          panels[i].style.opacity = "";
+        }
+        for (var i=0; i<timeoutId.length; i++) {
+          clearTimeout(timeoutId[i]);
+        }
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      document.getElementById("symbol").innerHTML = buttSymbol;
+      document.getElementById("needleTxt").innerHTML = coolTxt;
+    }
+    
+    function setAllTimeouts(){
+      timeoutId.push(setTimeout(panelChange, 10085));
+      timeoutId.push(setTimeout(panelChange, 20352));
+      timeoutId.push(setTimeout(panelChange, 30280));
+      timeoutId.push(setTimeout(panelChange, 40803));
+      timeoutId.push(setTimeout(panelChange, 45591));
+      timeoutId.push(setTimeout(panelChange, 55565));
+      timeoutId.push(setTimeout(panelChange, 65244));
+      timeoutId.push(setTimeout(panelChange, 76135));
+      timeoutId.push(setTimeout(panelChange, 85961));
+      timeoutId.push(setTimeout(panelChange, 99826));
+      timeoutId.push(setTimeout(buttonChange, 106277));
+    }
+
+    function panelChange(){
+      panels[currentPanel].style.opacity = "";
+      panels[nextPanel].style.opacity = "1"
+      currentPanel++;
+      nextPanel++;
+    }
+
+    function txtShift(){
+      document.getElementById("needle").style.marginLeft = "5px";
+    }
+
+    function txtDeshift(){
+      document.getElementById("needle").style.marginLeft = "";
+    }
+
+  </script>
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script>
+        var makeItRain = function() {
+  //clear out everything
+  $('.rain').empty();
+
+  var increment = 0;
+  var drops = "";
+  var backDrops = "";
+
+  while (increment < 100) {
+    //couple random numbers to use for various randomizations
+    //random number between 98 and 1
+    var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+    //random number between 5 and 2
+    var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+    //increment
+    increment += randoFiver;
+    //add in a new raindrop with various randomizations to certain CSS properties
+    drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+    backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+  }
+
+  $('.rain.front-row').append(drops);
+  $('.rain.back-row').append(backDrops);
+}
+
+makeItRain();
+    </script>
+  
+</html>

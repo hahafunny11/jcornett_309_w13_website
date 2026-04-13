@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Clock Website (Responsive)</title>
+    <link rel="stylesheet" href="portrait.css" media="all and (orientation: portrait)">
+    <link rel="stylesheet" href="landscape.css" media="all and (orientation: landscape)">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div id="banner">
+        <p class = "ban">The Grandfather Clock</p>
+    </div>
+
+    <div id ="device">
+        <div id ="cooltech">
+            <img src ="img/buttongear.png" id="gearbutton">
+            <img src ="img/buttongear.png" id = "realbutton" onclick="goRotate()">
+            <img src = "img/gearbuttaccent.png" id="buttonaccent">
+            <img src="img/tech.png" id="grand">
+            <img src="img/clockgeartop.png" id="topgear">
+            <img src="img/clockgearmiddle.png" id="middlegear">
+            <img src="img/clockgearbottom.png" id="bottomgear">
+            <img src="img/clk.png" id="clock">
+            <img src="img/minutehand.png" id="minute">
+            <img src="img/hourhand.png" id="hour">
+
+            <div id = "gearbox">
+                <img src="img/bordergear.png" id ="marGear1">
+                <img src="img/bordergear.png" id ="marGear2">
+                <img src="img/bordergear.png" id ="marGear3">
+                <img src="img/bordergear.png" id ="marGear4">
+            </div>
+
+            <div id="marKey"><div id="marquee">
+
+                Clock: Comes from the medieval Latin word 'Clocca', Middle Low German and Middle Dutch 'Klocke', Middle English 'Clokke', Old North French 'Cloque', or Middle Dutch 'Clocke'; all of which meaning 'bell'.
+
+                <br><br><br><br><br>
+
+                These clocks were made with two types of movement; eight-day and one-day. Eight-day clocks only requred winding once a week, while less expensive one-day clocks needed to be winded daily.
+
+                <br><br><br><br><br>
+
+                Originally, all clocks, including the Grandfather clock, only had one hand; the hour hand, due to the lack of accuracy. The increase in accuracy provided by the anchor is what inspired the minute hand.
+
+                <br><br><br><br><br>
+
+                Longer pendulums have several advantages over smaller pendulums; they require less power, allows clocks to run longer between windings, causes less friction and wear in the movement, and are more accurate.
+
+                <br><br><br><br><br>
+
+                Prior to the anchor, pendulums needed to move in 80-100 degree swings, which would not work with a long pendulum. The anchor reduced the required angle to around 4-6 degrees, allowing for long pendulums.
+
+                <br><br><br><br><br>
+
+                The Grandfather Clock was invented to house the pendulum of Pendulum Clock, after modifications required a larger case after the invention of the anchor escapement in 1670.
+
+                <br><br><br><br><br> <br>
+
+                In 1656, Galileo invented the Pendulum Clock, and Christiaan Huygens determined the clock's math formula and had the first one made. These clocks use a swinging bob to regulate the motion of the clock.
+
+                <br><br><br><br><br>
+
+                It is unknown exactly when the transition from water clock to fully mechanical clock occurred. European church records increasingly mentioned clocks between 1280 and 1320, signifiying a possible transition.
+
+                <br><br><br><br><br>
+
+                Astronomical clocks are giant geared water clocks designed for calculating complex astronomical problems. One of the first astronomical clocks was invented in China by Su Song, and was around 30 feet tall.
+
+                <br><br><br><br><br>
+
+                The first known geared clock was a variety of water clock created by Greek engineer Archimedes. This clock works on a system of four weights, counterweights, and strings regulated by a system of floats in water.
+
+                <br><br><br><br><br>
+
+                Sometime after the creation of sundials came water clocks, which measured time with a regulated flow of liquid into or out from a vessel where said liquid can be measured.
+
+                <br><br><br><br><br> <br>
+ 
+                Before clocks were sundials. Sundials use shadows to determine the time as a shadow's movement is correspondant to the sun's position in the sky. Sundials have existed since their creation in Egypt.
+            
+                <br><br><br><br><br>
+                
+                Clock: Comes from the medieval Latin word 'Clocca', Middle Low German and Middle Dutch 'Klocke', Middle English 'Clokke', Old North French 'Cloque', or Middle Dutch 'Clocke'; all of which meaning 'bell'.
+            </div>
+        </div>
+        <div id = "marImp"></div><div id = "marToppy"></div>
+        
+            
+        </div>
+
+    </div>
+    <script>
+        var audio = new Audio('audio/geary.mp3');
+        var mark = $('#marquee');
+        var currentHour = 12;
+        var nextHour = 1;
+        var factNo = 1;
+        var anim = "";
+        var factsy = "";
+        var spinnies =[$('#minute'),$('#topgear'),$('#gearbutton'),$('#bottomgear'),$('#middlegear'),$('#buttonaccent'),$('#marGear2'),$('#marGear1'),$('#marGear4'),$('#marGear3')]
+
+        var tim;
+        tim = setTimeout(startIdle, 5000);
+
+        const animated = $('#minute');
+        animated.on('animationend', () => {
+            repause();
+            });
+
+        
+        
+
+        function goRotate(){
+            
+            clearTimeout(tim);
+            if (spinnies[2].css('animation-name') == "idle"){
+                spinnies[2].css('animation-name', "rotatetest");
+                spinnies[2].css('animation-iteration-count', "1");
+                spinnies[2].css('animation-play-state','paused');
+                spinnies[2].css('animation-duration','.625s');
+                spinnies[2].css('animation-timing-function','linear');
+                $('#realbutton').css('animation-name', "none")
+                $('#realbutton').css('animation-play-state','paused');
+            }
+            
+            
+            
+            $('#realbutton').css("pointer-events",'none');
+            anim = "hour" + currentHour+"to"+nextHour;
+            $("#hour").css('animation-name',anim);
+            currentHour++;
+            nextHour++;
+            if (currentHour > 12){currentHour = 1;}
+            if (nextHour > 12){nextHour = 1;}
+            for(let i = 0; i < 10; i++){
+                spinnies[i].css('animation-play-state','running');
+            }
+
+            factsy = "scroll"+factNo;
+            factNo++;
+            if (factNo > 12){factNo = 1};
+                mark.css('animation-name',factsy);
+                mark.css('animation-play-state','running');
+
+            audio.play();
+        }
+
+        function repause(){
+            for(let i = 0; i < 10; i++){
+                spinnies[i].css('animation-name','none');
+                console.log(spinnies[i].css('animation-name')) //load-bearing console.log; removing this code breaks all animations. i am so confused (apparently this is resetting animations. somehow. whar)           (coconut.jpg moment)
+                if (i%2 == 0){spinnies[i].css('animation-name','rotatetest')}
+                else{spinnies[i].css('animation-name','rotatetestR')}
+                spinnies[i].css('animation-play-state','paused');
+            }
+            $('#realbutton').css("pointer-events",'auto');
+            tim = setTimeout(startIdle, 5000);
+
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        function startIdle(){
+            spinnies[2].css('animation-name', "idle");
+            spinnies[2].css('animation-iteration-count', "infinite");
+            spinnies[2].css('animation-play-state','running');
+            spinnies[2].css('animation-duration','3s');
+            spinnies[2].css('animation-timing-function','ease');
+            $('#realbutton').css('animation-name', "idle")
+            $('#realbutton').css('animation-play-state','running');
+            console.log(spinnies[2].css('animation-name'))
+        }
+
+    </script>
+  </body>

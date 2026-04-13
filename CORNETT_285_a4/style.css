@@ -1,0 +1,360 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #202020, #111119);
+}
+
+#container {
+    height: 540px;
+    width: 960px;
+    border-radius: 10px;
+    border: 3px solid white;
+    overflow: hidden;
+    position: relative;
+    margin: 20px;
+}
+
+#panel1 {
+    transition: .5s;
+    position: absolute;
+    left: 0px;
+    top: 23px;
+    opacity:.001;
+}
+#panel1:hover{
+    opacity:1;
+}
+
+#panel2 {
+    transition: .5s;
+    position: absolute;
+    left: 91px;
+    top: 21px;
+    opacity:.001;
+}
+#panel2:hover{
+    opacity:1;
+}
+
+#panel3 {
+    transition: .5s;
+    position: absolute;
+    left: 182px;
+    top: 22px;
+    opacity:.01;
+}
+#panel3:hover{
+    opacity:1;
+}
+
+#panel4 {
+    transition: .5s;
+    position: absolute;
+    left: 273px;
+    top: 22px;
+    opacity:.01;
+}
+#panel4:hover{
+    opacity:1;
+}
+
+#panel5 {
+    transition: .5s;
+    position: absolute;
+    left: 361px;
+    top: 24px;
+    opacity:.01;
+}
+#panel5:hover{
+    opacity:1;
+}
+
+#panel6 {
+    transition: .5s;
+    position: absolute;
+    left: 412px;
+    top: 24px;
+    opacity:.01;
+}
+#panel6:hover{
+    opacity:1;
+}
+
+#panel7 {
+    transition: .5s;
+    position: absolute;
+    left: 503px;
+    top: 23px;
+    opacity:.01;
+}
+#panel7:hover{
+    opacity:1;
+}
+
+#panel8 {
+    transition: .5s;
+    position: absolute;
+    left: 590px;
+    top: 22px;
+    opacity:.01;
+}
+#panel8:hover{
+    opacity:1;
+}
+
+#panel9 {
+    transition: .5s;
+    position: absolute;
+    left: 687px;
+    top: 23px;
+    opacity:.01;
+}
+#panel9:hover{
+    opacity:1;
+}
+
+#panel10 {
+    transition: .5s;
+    position: absolute;
+    left: 779px;
+    top: 21px;
+    opacity:.01;
+}
+#panel10:hover{
+    opacity:1;
+}
+
+#panel11 {
+    transition: .5s;
+    position: absolute;
+    left: 888px;
+    top: 21px;
+    opacity:.01;
+}
+#panel11:hover{
+    opacity:1;
+}
+
+#coolbutton{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border: 5px solid white;
+    background-color: #555555;
+    left: 600px;
+    top: 300px;
+    height: 100px;
+    width: 100px;
+    padding-bottom:5px;
+    padding-left:5px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: filter 0.3s ease 0.3s;
+    transition: opacity .1s ease-out;
+    transition: outline-offset 200ms ease;
+    --outline: 3.5px solid rgba(255,255,255,.7);
+    outline: var(--outline);
+    border: var(--outline);
+    outline-offset: -3px;
+}
+
+#needle {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 28px 0 28px 210px;
+    border-color: transparent transparent transparent #999999;
+    transform: rotate(0deg);
+    position: absolute;
+    left: 650px;
+    top: 326px;
+}
+
+#needle:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 21px solid transparent;
+  border-bottom: 21px solid transparent;
+  border-left: 190px solid #555555;
+  position: absolute;
+  top: -21px;
+  left: -205px;
+}
+
+
+#coolbutton:hover{
+    transition: opacity .1s ease-out;
+    outline: var(--outline);
+    outline-offset: 5px;
+    transition: outline-offset 200ms ease;
+}
+
+#coolbutton:active{
+    transform: scale(.95);
+    background-color: slateGrey;
+    transition: filter 0s;
+}
+
+p{
+    color:white;
+    font-size: 50px;
+}
+
+h3{
+    color:white;
+    position: absolute;
+    left: -154px;
+    top: -30px;
+    z-index: 30;
+}
+
+#playline{
+    animation-duration: 106277ms;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+    animation-name: runtime;
+    position: absolute;
+    left:-7px;
+    top: 3px;
+    opacity: 0;
+    will-change: left;
+}
+
+#point{
+    width: 10px;
+    height: 10px;
+    border: 3px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    transform: rotate(45deg);
+    margin-left: auto; margin-right: auto;
+}
+
+#line{
+    width: 2px;
+    border:2px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    height: 157px;
+    margin-left: 3.5px;
+}
+
+@keyframes runtime{
+    0%{
+        left:-7px;
+    }
+
+    100%{
+        left: 955px
+    }
+}
+
+
+.rain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.rain.back-row {
+  display: none;
+  z-index: 1;
+  bottom: 60px;
+  opacity: 0.5;
+}
+
+body.back-row-toggle .rain.back-row {
+  display: block;
+  pointer-events: none;
+}
+
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 15px;
+  height: 120px;
+  pointer-events: none;
+  animation: drop 0.5s linear infinite;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0vh);
+  }
+  75% {
+    transform: translateY(650px);
+  }
+  100% {
+    transform: translateY(600px);
+  }
+}
+
+.stem {
+  width: 1px;
+  height: 60%;
+  margin-left: 7px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+  animation: stem 0.5s linear infinite;
+}
+
+@keyframes stem {
+  0% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.splat {
+  width: 10px;
+  height: 6.67px;
+  border-top: 2px dotted rgba(255, 255, 255);
+  border-radius: 50%;
+  opacity: 1;
+  transform: scale(0);
+  animation: splat 0.5s linear infinite;
+  display: none;
+}
+
+body.splat-toggle .splat {
+  display: block;
+  pointer-events: none;
+}
+
+@keyframes splat {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  90% {
+    opacity: 0.5;
+    transform: scale(.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+

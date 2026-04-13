@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" type="image/x-icon" href="img/goffy.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<title> Jonathan's Portfolio </title>  <!-- leave the title tags and replace the insert title here txt with your actual title-->
+
+
+</head>
+
+<body>
+ <div id="iAmALazyMan"></div>
+    
+<canvas id="rain"></canvas>
+<link href="https://fonts.googleapis.com/css?family=Gayathri&display=swap" rel="stylesheet">
+
+
+<div class="banner">
+  <h1>Jonathan Cornett</h1>
+  </div>
+
+  <div class="wrapper">
+    <ul id = "nav">
+  <li id = "ab"><a href="#first">Adv 309</a></li>
+  <li id = "bc"><a href="#second">Other Classes</a></li>
+  <li id = "cd" style="float:right"><a href="#bio">About me & Resume</a></li>
+  </ul>
+
+  <br><br>
+
+<div id="content1">
+<h3> Work from Adv 309 </h3>
+<a href ="AdvLinks/jcornett_309_w3.pdf" title="Consumer profile of myself." target = "_blank"><img src = "img/AdvU2Img.png" id = "preview1"></a>
+<a href ="AdvLinks/jcornett_309_w5.pdf" title="Creative brief for an ad strategy for an existing cereal brand." target = "_blank"><img src = "img/AdvU4Img.png" id = "preview2"></a>
+<a href ="AdvLinks/jcornett_309_w7_poster.png" title="Poster design revolving around a color scheme made for an existing grocery store product." target = "_blank"><img src = "img/AdvU6Img.png" id = "preview3"></a>
+<a href ="AdvLinks/jcornett_309_w9.png" title="Print ad for the fictional AsparFlakes brand." target = "_blank"><img src = "img/AdvU8Img.png" id = "preview4"></a>
+<a href ="AdvLinks/AdvInstaPostAssignment.png" title="Social media ad for a local brand." target = "_blank"><img src = "img/AdvU9Img.png" id = "preview5"></a>
+<a href ="ScriptStory.html" title="Script and Storyboard for a 30 second TV ad for the Away Travel suitcase line." target = "_blank"><img src = "img/AdvU10Img.png" id = "preview6"></a>
+
+
+</div>
+
+<div id="content2">
+<h3> Work from other classes </h3>
+<a href ="https://hahafunny420.itch.io/cornett-jam-3" title="A two-layer maze game requiring the player to find collectibles to advance." target = "_blank"><img src = "img/IGD-p3.png" id = "preview1"></a>
+<a href ="https://terminustech.itch.io/unmountain-overseer" title="A game where the player's camera doesn't follow the player, but rather, is fixed to various security cameras. Collaborative project between me and TerminusTech." target = "_blank"><img src = "img/IGD-p4.png" id = "preview2"></a>
+<a href ="https://www.figma.com/proto/fIwgllK5vA6jcuB134SJHW/Jonathan-Cornett-Final-Prototype-UIUX?node-id=10-13&t=w8qrkQj8MF5ISQ0Z-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=10%3A13" title="A whack-a-mole style game." target = "_blank"><img src = "img/UIUX-protoapp.png" id = "preview3"></a>
+<a href ="https://hahafunny420.itch.io/corridors-of-infinity-final" title="Roguelike game built in the RenPy engine; a game engine that is for Visual Novels and not Roguelikes." target = "_blank"><img src = "img/CFMA-CoI.png" id = "preview4"></a>
+<a href ="CORNETT_285_a4/index.html" title="Website that showcases the song structure of the song 'Strive'" target = "_blank"><img src = "img/IAD-SAiC.png" id = "preview5"></a>
+<a href ="CORNETT_372_a5/index.html" title="Informational website meant to showcase interactive analog technology that has it's window resize dynamically based on user viewport." target = "_blank"><img src = "img/IWD-DIS.png" id = "preview6"></a>
+
+
+</div>
+
+<div id="content3">
+<h3> About me & Resume</h3>
+<div id ="abTxt">
+  <p>Hello! I am Jonathan, a Junior in Game Design & Interactive Media, with a <br>minor in Advertising, who will graduate* in 2027.
+  <br>
+  <br>I primarily focus on the development of video games, with the goal of creating <br>my own dream video game.
+  <br>
+  <br>When I'm not developing games, I'm playing them, either by myself or with friends.
+  <br><br>*I won't fully graduate, as I will be going into the GDIM Master's Program.
+  <br><br>My resume can be found <a href="AdvLinks/Jonathan_Cornett_Resume.pdf" target = "_blank">HERE</a>
+</p></div>
+<img src = "img/ImageOfMe.jpg" id = "meLol">
+
+</div>
+</div>
+
+<div id="imgsrc"><p>Source: Wikimedia Commons [https://commons.wikimedia.org/wiki/File:Raining_street.jpg]</p></div>
+
+    <script> 
+
+      var c = document.getElementById("rain");
+
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+
+var ctx = c.getContext("2d");
+
+let rainDrops = [];
+let elements = document.getElementsByClassName("raindrop");
+let length = 30;
+let speed = 15;
+
+let angle = 90 * Math.PI / 180;
+let angleSin = Math.sin(angle);
+let angleCos = Math.cos(angle);
+
+let spawnInterval = setInterval(newDrop, 50);
+
+window.addEventListener("resize", onResize);
+
+document.addEventListener("visibilitychange", function() {
+  if (document.hidden) {
+    clearInterval(spawnInterval);
+  } else {
+    spawnInterval = setInterval(newDrop, 50);
+  }
+});
+
+function RainDrop(x, y, angle) {
+  this.x = x;
+  this.y = y;
+  rainDrops.push(this);
+}
+
+function newDrop() {
+  for (let x = 0; x < 50; x++) {
+    new RainDrop(Math.random() * c.width, -40 - 100 * Math.random(), angle);
+  }
+}
+
+update();
+
+function update() {
+  for (let x = 0; x < rainDrops.length; x++) {
+    let drop = rainDrops[x];
+    drop.x += speed * angleCos;
+    drop.y += speed * angleSin;
+
+    drop.endX = drop.x + length * angleCos;
+    drop.endY = drop.y + length * angleSin;
+
+    if (drop.y > c.height) {
+      rainDrops.splice(x, 1);
+      x--;
+    }
+  }
+
+  //checkCollisions();
+  draw();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  ctx.lineWidth = 1;
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#0984e3";
+
+  let gradient = ctx.createLinearGradient(0, 0, 0, c.height);
+
+  gradient.addColorStop(0, "#00a8ff");
+  gradient.addColorStop(0.6, "#00a8ff");
+  gradient.addColorStop(1, "white");
+
+  ctx.strokeStyle = gradient;
+
+  ctx.beginPath();
+  for (let i = 0; i < rainDrops.length; i++) {
+    ctx.moveTo(Math.floor(rainDrops[i].x), Math.floor(rainDrops[i].y));
+    ctx.lineTo(Math.floor(rainDrops[i].endX), Math.floor(rainDrops[i].endY));
+  }
+  ctx.stroke();
+
+  clearRegions();
+  window.requestAnimationFrame(update);
+}
+
+function onResize() {
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+}
+
+function clearRegions() {
+  ctx.globalCompositeOperation = "destination-out";
+
+  for (let i = 0; i < elements.length; i++) {
+    let boundingBox = elements[i].getBoundingClientRect();
+    let yDistanceBottom = c.height - boundingBox.bottom;
+    let yDistanceTop = c.height - boundingBox.top;
+
+    let bottomLeftX =
+      boundingBox.left + yDistanceBottom * Math.tan(Math.PI / 2 - angle);
+    let bottomRightX =
+      boundingBox.right + yDistanceBottom * Math.tan(Math.PI / 2 - angle);
+
+    let bottomLeftX2 =
+      boundingBox.left + yDistanceTop * Math.tan(Math.PI / 2 - angle);
+    let bottomRightX2 =
+      boundingBox.right + yDistanceTop * Math.tan(Math.PI / 2 - angle);
+
+    //From bottom of element to edge of page
+    ctx.beginPath();
+    ctx.moveTo(boundingBox.left, boundingBox.bottom);
+    ctx.lineTo(bottomLeftX, c.height);
+    ctx.lineTo(bottomRightX, c.height);
+    ctx.lineTo(boundingBox.right, boundingBox.bottom);
+    ctx.closePath();
+    ctx.fill();
+
+    //From top of element to edge of page
+    ctx.beginPath();
+    ctx.moveTo(boundingBox.left, boundingBox.top);
+    ctx.lineTo(bottomLeftX2, c.height);
+    ctx.lineTo(bottomRightX2, c.height);
+    ctx.lineTo(boundingBox.right, boundingBox.top);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  ctx.globalCompositeOperation = "source-over";
+}
+
+  $("#ab").removeClass('active').addClass('active');
+
+  var aboot = false;
+ 
+
+$(document).ready(function() {
+$("#ab").click(function(){
+  event.preventDefault();
+  $("#ab").removeClass('active').addClass('active');
+  $("#bc").removeClass('active');
+  $("#cd").removeClass('active');
+
+  $('#content1').removeClass('inactive').removeClass('inactiveInv').removeClass('currentInv').addClass('current');
+  $('#content1').fadeIn(500);
+  
+  $('#content2').removeClass('current').removeClass('inactiveInv').removeClass('currentInv').addClass('inactive');
+  $('#content2').fadeOut(500);
+
+  $('#content3').removeClass('current').removeClass('inactiveInv').removeClass('currentInv').addClass('inactive');
+  $('#content3').fadeOut(500);
+
+  aboot = false;
+});
+
+$("#bc").click(function(){
+  event.preventDefault();
+  $("#ab").removeClass('active');
+  $("#bc").removeClass('active').addClass('active');
+  $("#cd").removeClass('active');
+  
+  if (aboot){
+  $('#content1').removeClass('current').removeClass('inactiveInv').removeClass('currentInv').addClass('inactive');
+  $('#content1').fadeOut(500);
+  
+  $('#content2').removeClass('inactive').removeClass('inactiveInv').removeClass('currentInv').addClass('current');
+  $('#content2').fadeIn(500);
+
+  $('#content3').removeClass('current').removeClass('inactiveInv').removeClass('currentInv').addClass('inactive');
+  $('#content3').fadeOut(500);
+  }
+  else{
+    $('#content1').removeClass('currentInv').removeClass('inactive').removeClass('current').addClass('inactiveInv');
+  $('#content1').fadeOut(500);
+  
+  $('#content2').removeClass('inactiveInv').removeClass('inactive').removeClass('current').addClass('currentInv');
+  $('#content2').fadeIn(500);
+
+  $('#content3').removeClass('currentInv').removeClass('inactive').removeClass('current').addClass('inactiveInv');
+  $('#content3').fadeOut(500);
+  }
+
+  aboot = false;
+});
+
+$("#cd").click(function(){
+  event.preventDefault();
+  $("#ab").removeClass('active');
+  $("#bc").removeClass('active');
+  $("#cd").removeClass('active').addClass('active');
+
+  $('#content1').removeClass('currentInv').removeClass('inactive').removeClass('current').addClass('inactiveInv');
+  $('#content1').fadeOut(500);
+  
+  $('#content2').removeClass('currentInv').removeClass('inactive').removeClass('current').addClass('inactiveInv');
+  $('#content2').fadeOut(500);
+
+  $('#content3').removeClass('inactiveInv').removeClass('inactive').removeClass('current').addClass('currentInv');
+  $('#content3').fadeIn(500);
+
+  aboot = true;
+});
+});
+
+    </script>
+</body>
+
+</html>
